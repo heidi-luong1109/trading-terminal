@@ -60,7 +60,7 @@ namespace BitMEXAssistant
         Dictionary<string, decimal> Prices = new Dictionary<string, decimal>();
         //List<Alert> Alerts = new List<Alert>();
 
-        public static string Version = "0.0.30";
+        public static string Version = "1.0.0";
 
         string LimitNowBuyOrderId = "";
         decimal LimitNowBuyOrderPrice = 0;
@@ -1398,11 +1398,6 @@ namespace BitMEXAssistant
             Properties.Settings.Default.Save();
         }
 
-        private void pbxYouTubeSubscribe_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.youtube.com/BigBits?sub_confirmation=1");
-        }
-
         private void lblDonate_Click(object sender, EventArgs e)
         {
             TabControl.SelectTab("tabDonate");
@@ -1503,7 +1498,7 @@ namespace BitMEXAssistant
             if (DateTime.UtcNow.Second == 0)
             {
                 //Update our balance each minute
-                //UpdateBalanceAndTime();
+                UpdateBalanceAndTime();
             }
 
             // Update the time every second.
@@ -1511,15 +1506,15 @@ namespace BitMEXAssistant
 
             if (((TimeSpan)(DateTime.UtcNow - GeneralWebScocketLastMessage)).TotalSeconds > heartbeatcheck)
             {
-                //Console.WriteLine("general websocket send ping");
-                //ws_general.Ping();
+                Console.WriteLine("general websocket send ping");
+                ws_general.Ping();
                 ws_general.Send("ping");
             }
 
             if (((TimeSpan)(DateTime.UtcNow - UserWebScocketLastMessage)).TotalSeconds > heartbeatcheck)
             {
-                //Console.WriteLine("User websocket send ping");
-                //ws_user.Ping();
+                Console.WriteLine("User websocket send ping");
+                ws_user.Ping();
                 ws_user.Send("ping");
             }
 
